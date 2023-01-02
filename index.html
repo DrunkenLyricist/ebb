@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⌚</text></svg>">
+<style>
+    body{
+    
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    text-align: center;
+    font-size: 11.2vw;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-right: 50px;
+    margin-left: 50px;
+    color: white;
+    background-color: black;
+}
+</style>
+</head>
+<body>
+<div= "sunrise">👣</div>
+<div class id="demo"></div>
+<p></p>
+<div class = "sunset">🫀</div>
+<div class id="lol"></div>
+
+<script>
+// Set the date we're counting down to
+var till = new Date("Jan 31, 2076 21:05:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var since = new Date("Jan 31, 2006 21:05:00").getTime();
+  var now = new Date().getTime();
+  var used = now - since;
+  var percent = used / till * 100;
+  var n = (percent).toFixed(7)
+    
+  // Find the distance between now and the count down date
+  var distance = till - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  
+  
+  document.getElementById("demo").innerHTML = n + "%";
+  document.getElementById("lol").innerHTML = days + ":" + hours + ":"
+    + minutes + ":" + seconds;
+    
+  
+}, 1000);
+</script>
+
+</body>
+</html>

@@ -1,22 +1,22 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+  <title>just one moment laude</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⌚</text></svg>">
 <style>
-    body{
-    
-    font-family: 'Atkinson Hyperlegible', sans-serif;
-    text-align: center;
-    font-size: 11.2vw;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    margin-right: 50px;
-    margin-left: 50px;
-    color: white;
-    background-color: black;
-}
+    body {
+        font-family: 'Atkinson Hyperlegible', sans-serif;
+        text-align: center;
+        font-size: 11.2vw;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        margin-right: 50px;
+        margin-left: 50px;
+        color: white;
+        background-color: black;
+    }
 </style>
 </head>
 <body>
@@ -27,18 +27,34 @@
 <div class id="lol"></div>
 
 <script>
+// Function to get a random date up to 70 years from now
+function getRandomDate() {
+  var now = new Date();
+  var maxYears = 70;
+  var maxMilliseconds = maxYears * 365 * 24 * 60 * 60 * 1000; // Maximum milliseconds for 70 years
+  var randomMilliseconds = Math.floor(Math.random() * maxMilliseconds);
+  return new Date(now.getTime() + randomMilliseconds);
+}
+
+// Function to get a random countdown speed between 1 second and 24 hours per second
+function getRandomInterval() {
+  var maxSpeed = 1 / 3600; // Maximum speed in seconds per millisecond (24 hours per second)
+  var minSpeed = 1; // Minimum speed in seconds per millisecond (1 second per second)
+  var randomSpeed = Math.random() * (maxSpeed - minSpeed) + minSpeed;
+  return 1000 / randomSpeed; // Convert to milliseconds
+}
+
 // Set the date we're counting down to
-var till = new Date("Jan 31, 2076 21:05:00").getTime();
+var till = getRandomDate().getTime();
 
-// Update the count down every 1 second
-var x = setInterval(function() {
-
+// Update the count down at random intervals
+function updateCountdown() {
   // Get today's date and time
   var since = new Date("Jan 31, 2006 21:05:00").getTime();
   var now = new Date().getTime();
   var used = now - since;
   var percent = used / till * 100;
-  var n = (percent).toFixed(7)
+  var n = (percent).toFixed(7);
     
   // Find the distance between now and the count down date
   var distance = till - now;
@@ -50,14 +66,17 @@ var x = setInterval(function() {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
   // Output the result in an element with id="demo"
-  
-  
   document.getElementById("demo").innerHTML = n + "%";
   document.getElementById("lol").innerHTML = days + ":" + hours + ":"
     + minutes + ":" + seconds;
-    
-  
-}, 1000);
+
+  // Set a new random interval for the next update
+  var randomInterval = getRandomInterval();
+  setTimeout(updateCountdown, randomInterval);
+}
+
+// Start the countdown
+updateCountdown();
 </script>
 
 </body>
